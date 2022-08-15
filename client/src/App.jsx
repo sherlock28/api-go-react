@@ -1,10 +1,12 @@
-import React from 'react'
+import React from 'react';
 
 export default function App() {
 
-  const saveData = (e) => {
+  const saveData = async (e) => {
     e.preventDefault();
-    console.log("Save data")
+    const response = await fetch("/users");
+    const data = await response.json();
+    console.log(data)
   }
 
   return (
