@@ -1,6 +1,6 @@
 module github.com/sherlock28/api-go-react
 
-go 1.19
+go 1.18
 
 require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
