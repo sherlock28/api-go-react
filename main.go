@@ -1,15 +1,33 @@
 package main
 
 import (
+	"context"
 	"fmt"
 
 	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+const uri = "mongodb://localhost:27017/gomongodb"
+
 func main() {
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
+
+	if err != nil {
+		panic(err)
+	}
+
+	coll := client.Database("gomongodb").Collection("users")
+
+	coll.InsertOne(context.TODO(), bson.D{
+		{"name", "sherlock28"},
+	})
+
 	app := fiber.New()
 
 	app.Use(cors.New())
