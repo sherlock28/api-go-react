@@ -10,7 +10,7 @@ export default function App() {
   }
 
   async function loadUsers() {
-    const response = await fetch("http://localhost:3000/users");
+    const response = await fetch("/users");
     const res = await response.json();
     setUsers(res.data);
   }
@@ -20,7 +20,7 @@ export default function App() {
 
     if (name === "") return;
     
-    await fetch("http://localhost:3000/users", {
+    await fetch("/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
